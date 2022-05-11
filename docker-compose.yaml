@@ -1,0 +1,34 @@
+version: "3.2"
+
+services:
+  jellyfin:
+    image: linuxserver/jellyfin:nightly-version-20220510.1-unstable
+    
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Kolkata/India
+      
+    volumes:
+      - /home/ayush/jellyfin_data/config/:/config
+      - /home/ayush/jellyfin_data/cache:/cache
+      - /mnt/01D6FF043903F100/Entertainment/movies:/media
+      
+#    ports:
+#     - 8096:8096
+#     - 8920:8920 #optional
+#     - 7359:7359/udp #optional
+#     - 1900:1900/udp #optional
+      
+    restart: unless-stopped
+
+    network_mode: "host"
+    
+    deploy:
+      replicas: 1
+
+#volumes:
+#  config:
+#  movies:
+
+
